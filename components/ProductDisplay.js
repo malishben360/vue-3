@@ -17,11 +17,7 @@ app.component('product-display', {
                     <p v-if="inStock">In Stock</p>
                     <p v-else>Out of Stock</p>
                     <p>Shipping: {{ shipping }}</p>
-                    <ul>
-                        <li v-for="(detail, index) in details" :key="index">
-                            {{ detail }}
-                        </li>
-                    </ul>
+                    <product-details :details="details"></product-details>
                     <div
                         class="color-circle"
                         v-for="(variant, index) in variants"
