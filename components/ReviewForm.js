@@ -1,7 +1,8 @@
 app.component('review-form', {
 	template:
 		/* html */
-		`<form class="review-form" @submit.prevent="onSubmit">
+		`<!-- prevent form default behavior -->
+        <form class="review-form" @submit.prevent="onSubmit">
             <h3>Leave a review</h3>
             <label for="name">Name:</label>
             <input id="name" v-model="name">
@@ -10,7 +11,8 @@ app.component('review-form', {
             <textarea id="review" v-model="review"></textarea>
 
             <label for="rating">Rating:</label>
-            <select id="rating" v-model="rating">
+            <!-- casing to number -->
+            <select id="rating" v-model.number="rating">
                 <option>5</option>
                 <option>4</option>
                 <option>3</option>
@@ -35,7 +37,7 @@ app.component('review-form', {
 				review: this.review,
 				rating: this.rating,
 			}
-			/* send the review to the parent component */
+			/* emit new review */
 			this.$emit('on-submit-form', review)
 			/* reset the review to default */
 			this.name = ''
