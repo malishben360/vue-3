@@ -30,6 +30,8 @@ app.component('product-display', {
                     </div>
                 </div>
             </div>
+            <review-list v-if="reviews.length" :reviews="reviews"></review-list>
+            <review-form @on-submit-form="addReview"></review-form>
         </div>`,
 
 	data: () => ({
@@ -51,6 +53,7 @@ app.component('product-display', {
 				quantity: 100,
 			},
 		],
+		reviews: [],
 	}),
 	methods: {
 		updateVariant(index) {
@@ -58,6 +61,9 @@ app.component('product-display', {
 		},
 		addToCart() {
 			this.$emit('add-to-cart', this.variants[this.selectedVariant].id)
+		},
+		addReview(review) {
+			this.reviews.push(review)
 		},
 	},
 	computed: {
